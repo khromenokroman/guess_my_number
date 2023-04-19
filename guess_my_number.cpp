@@ -15,7 +15,7 @@ int main()
         std::string name_user;
         std::cout << "Введите ваше имя: ";
         std::cin >> name_user;
-        std::cout << "\nВведите верхний диапазон загадываемого числа: ";
+        std::cout << "Введите верхний диапазон загадываемого числа: ";
         std::cin >> max_random_number;
         int pc_number, attempt = 1;
         create_pc_number(pc_number, max_random_number);
