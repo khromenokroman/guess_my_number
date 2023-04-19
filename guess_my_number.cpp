@@ -8,15 +8,17 @@
 int main()
 {
     system("clear");
-    int answer;
+    int answer, max_random_number;
     choice_menu_item(answer);
     if (answer == 1)
     {
         std::string name_user;
         std::cout << "Введите ваше имя: ";
         std::cin >> name_user;
+        std::cout << "\nВведите верхний диапазон загадываемого числа: ";
+        std::cin >> max_random_number;
         int pc_number, attempt = 1;
-        create_pc_number(pc_number);
+        create_pc_number(pc_number, max_random_number);
         std::cout << "===========================================================" << std::endl;
         std::cout << "\t\t\tОписание игры:\n\nКомпьютер загадывает число, тебе надо это число угадать, все просто :)\n\n"
                   << "Если видишь сообщение \"Очень далеко\" занчит разница больше 30\n"
