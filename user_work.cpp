@@ -11,6 +11,7 @@ void check_user_number(const int &pc_number, int &attempt, const std::string nam
     {
         std::cout << "Введите число: ";
         std::cin >> user_number;
+
         int deviation = abs(pc_number - user_number);
 
         if (deviation >= 30)

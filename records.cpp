@@ -47,6 +47,4 @@ void write_records(const std::string &name_user, const int &attempt)
     file_out << name_user << std::endl;
     file_out << attempt << std::endl;
     file_out.close();
-
 }
-
