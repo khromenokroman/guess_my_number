@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cmath>
 
 #include "pc_work.h"
 #include "user_work.h"
@@ -18,10 +17,8 @@ int main()
         std::cin.ignore(32767,'\n'); //чищу буфер
         std::getline(std::cin, name_user); //получаю всю строку
         std::cout << "Введите верхний диапазон загадываемого числа: ";
-        std::cin >> max_random_number; // проверка на 0
-        if (max_random_number < 0)
-            max_random_number = abs(max_random_number);
-        if (max_random_number == 0)
+        std::cin >> max_random_number; // проверка на 0 и меньше
+        if (max_random_number <= 0)
         {
             std::cout << "Вы ввели недопустимое число!!" << std::endl;
             return -1;
