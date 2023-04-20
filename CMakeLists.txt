@@ -9,8 +9,7 @@ add_executable(03_guess_my_number
     start_menu.cpp
     records.cpp
 )
-
 set_target_properties(03_guess_my_number PROPERTIES
-    CXX_STANDARD 17
+    CXX_STANDARD 20
     CXX_STANDARD_REQUIRED ON
 )

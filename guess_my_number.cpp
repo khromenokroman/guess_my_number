@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 #include "pc_work.h"
 #include "user_work.h"
@@ -14,9 +15,17 @@ int main()
     {
         std::string name_user;
         std::cout << "Введите ваше имя: ";
-        std::cin >> name_user;
+        std::cin.ignore(32767,'\n'); //чищу буфер
+        std::getline(std::cin, name_user); //получаю всю строку
         std::cout << "Введите верхний диапазон загадываемого числа: ";
-        std::cin >> max_random_number;
+        std::cin >> max_random_number; // проверка на 0
+        if (max_random_number < 0)
+            max_random_number = abs(max_random_number);
+        if (max_random_number == 0)
+        {
+            std::cout << "Вы ввели недопустимое число!!" << std::endl;
+            return -1;
+        }
         int pc_number, attempt = 1;
         create_pc_number(pc_number, max_random_number);
         std::cout << "===========================================================" << std::endl;
