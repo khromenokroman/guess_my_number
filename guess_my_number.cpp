@@ -32,7 +32,7 @@ int main()
                   << "Если видишь сообщение \"Совсем близко\" занчит разница от 5 до 15\n"
                   << "Если видишь сообщение \"Рикошет\" занчит разница от 1 до 5\n"
                   << std::endl;
-        check_user_number(pc_number, attempt, name_user);
+        check_user_number(pc_number, attempt, name_user, max_random_number);
     }
     else if (answer == 2)
     {

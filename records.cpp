@@ -1,15 +1,6 @@
 #include <iostream>
 #include <fstream>
 
-int get_count_line()
-{
-    int count_line = 0;
-    std::string line;
-    std::fstream file("records.txt");
-    while (getline(file, line))
-        ++count_line;
-    return count_line;
-}
 
 void get_results()
 {
@@ -18,7 +9,7 @@ void get_results()
     
     system("clear");
     file_in.open("records.txt", std::fstream::in);
-    for (file_in_line; getline(file_in, file_in_line);)
+    for (; getline(file_in, file_in_line);)
     {
         std::cout << file_in_line << std::endl;
     }
