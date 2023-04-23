@@ -72,7 +72,7 @@ void get_results()
                 temp_buf.erase(0, 1);
             if (rec_attempt[i] == std::stoi(temp_buf))
             {
-                std::cout << rec_temp[j].substr(0, rec_temp[j].length() - 2) + " " + temp_buf << std::endl;
+                std::cout << rec_temp[j].substr(0, rec_temp[j].length() - 2) + "\t" + temp_buf << std::endl;
             }
         }
     }
@@ -134,8 +134,16 @@ void write_records(const std::string &name_user, const int &attempt)
         std::fstream file_out;
 
         file_out.open("records.txt", std::fstream::app);
-        file_out << std::endl << name_user << std::endl;
-        file_out << attempt;
+        if (get_count_line() / 2 <= 0)
+        {
+            file_out << name_user << std::endl;
+            file_out << attempt;
+        }
+        else
+        {
+            file_out << std::endl << name_user << std::endl;
+            file_out << attempt;
+        }
         file_out.close();
     }
 }
