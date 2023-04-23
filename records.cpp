@@ -11,6 +11,13 @@ int get_count_line()
     return count_line;
 }
 
+void clear_file()
+{
+    std::string path = "records.txt";
+    std::ofstream file(path);
+    file << "";
+}
+
 void get_results()
 {
     if (get_count_line() / 2 <= 0)
@@ -43,7 +50,7 @@ void get_results()
     {
         rec_temp[i] = rec_name[i] + "#" + std::to_string(rec_attempt[i]);
     }
-   
+
     for (int i = 0; i < max_item; i++) // сортируем массив
     {
         for (int j = 0; j < max_item - 1 - i; j++)
@@ -60,27 +67,75 @@ void get_results()
     {
         for (int j = 0; j < max_item; j++)
         {
-            temp_buf = rec_temp[j].substr(rec_temp[j].length()-2,rec_temp[j].length());
+            temp_buf = rec_temp[j].substr(rec_temp[j].length() - 2, rec_temp[j].length());
             if (temp_buf[0] == '#')
-                temp_buf.erase(0,1);
+                temp_buf.erase(0, 1);
             if (rec_attempt[i] == std::stoi(temp_buf))
             {
-                std::cout << rec_temp[j].substr(0,rec_temp[j].length()-2) + " " + temp_buf << std::endl;
+                std::cout << rec_temp[j].substr(0, rec_temp[j].length() - 2) + " " + temp_buf << std::endl;
             }
-
-
         }
-        
     }
-
 }
 
 void write_records(const std::string &name_user, const int &attempt)
 {
-    std::fstream file_out;
+    int max_line = get_count_line(), count = 0;
+    std::string arr_line[max_line];
+    std::fstream file_in;
+    std::string file_in_line;
+    file_in.open("records.txt", std::fstream::in);
+    for (; getline(file_in, file_in_line);) // читаем файл и создаем массив
+    {
+        arr_line[count] = file_in_line;
+        count++;
+    }
+    file_in.close();
+    count = 0;
+    bool add_user = true;
+    bool replace_data = false;
+    for (int i = 1; i < max_line; i+=2)
+    {
+        if (attempt == std::stoi(arr_line[i]) && name_user == arr_line[i - 1] ) // проверка если сыграл так же то пропуск
+        {
+            continue;
+        }    
+        if (attempt == std::stoi(arr_line[i])) // если такой же результат уже у когото есть
+        {
+            
+            arr_line[i - 1] = name_user;
+            arr_line[i] = std::to_string(attempt);
+            replace_data = true;
+        }
+        if (name_user == arr_line[i] || attempt == std::stoi(arr_line[i])) //не добовляем если совпало
+            add_user = false;
+    }
 
-    file_out.open("records.txt", std::fstream::app);
-    file_out << name_user << std::endl;
-    file_out << attempt << std::endl;
-    file_out.close();
+    if (replace_data) // читаем массив и пишем в файл
+    {
+        clear_file();
+        std::fstream file_out;
+        int count = 0;
+        file_out.open("records.txt", std::fstream::app);
+        for (int i = 0; i < max_line; i++)
+        {
+            if (i == max_line - 1) //на последней строке не делаем перевод строки
+            {
+                file_out << arr_line[i];
+                break;
+            }
+            file_out << arr_line[i] << std::endl;
+        }
+        file_out.close();
+    }
+
+    if (add_user) // добавляем в конец файла
+    {
+        std::fstream file_out;
+
+        file_out.open("records.txt", std::fstream::app);
+        file_out << std::endl << name_user << std::endl;
+        file_out << attempt;
+        file_out.close();
+    }
 }

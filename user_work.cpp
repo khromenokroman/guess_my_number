@@ -67,7 +67,7 @@ void check_user_number(const int &pc_number, int &attempt, const std::string nam
             std::cout << "************************************" << std::endl;
             std::cout << "**********!!!!Угадал!!!!************" << std::endl;
             std::cout << "************************************" << std::endl;
-            std::cout << "Было использованно попыток: " << attempt << std::endl;
+            std::cout << "Было использованно попыток: " << attempt + 1 << std::endl;
             write = true;
         }
         attempt++;
@@ -81,11 +81,10 @@ void check_user_number(const int &pc_number, int &attempt, const std::string nam
             }
             else
             {
-                std::cout << "Загаданное компьютером число: " << help_user(max_random_number,pc_number) << std::endl;
-                user_number = help_user(max_random_number,pc_number);
-            } 
+                std::cout << "Загаданное компьютером число: " << help_user(max_random_number, pc_number) << std::endl;
+                user_number = help_user(max_random_number, pc_number);
+            }
         }
-
     }
     if (write)
         write_records(name_user, attempt);

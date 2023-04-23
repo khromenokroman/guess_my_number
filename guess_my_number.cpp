@@ -23,7 +23,7 @@ int main()
             std::cout << "Вы ввели недопустимое число!!" << std::endl;
             return -1;
         }
-        int pc_number, attempt = 1;
+        int pc_number, attempt = 0;
         create_pc_number(pc_number, max_random_number);
         std::cout << "===========================================================" << std::endl;
         std::cout << "\t\t\tОписание игры:\n\nКомпьютер загадывает число, тебе надо это число угадать, все просто :)\n\n"
