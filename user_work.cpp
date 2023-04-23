@@ -71,7 +71,7 @@ void check_user_number(const int &pc_number, int &attempt, const std::string nam
             write = true;
         }
         attempt++;
-        if (attempt > 10)
+        if (attempt = 10)
         {
             std::cout << "Вы слишком много раз угадывали не правильно хотите чтобы компьютер отгадал за вас число? [y/n]";
             std::cin >> help;
@@ -85,6 +85,8 @@ void check_user_number(const int &pc_number, int &attempt, const std::string nam
                 user_number = help_user(max_random_number, pc_number);
             }
         }
+        if (attempt = 20)
+            break;
     }
     if (write)
         write_records(name_user, attempt);
